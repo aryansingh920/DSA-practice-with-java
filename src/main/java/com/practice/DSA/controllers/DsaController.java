@@ -3,6 +3,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.practice.DSA.enums.ResponseStatus;
+import com.practice.DSA.helper.APIResponse;
 import com.practice.DSA.services.DsaService;
 
 
@@ -16,8 +18,11 @@ public class DsaController {
     }
 
     @GetMapping("/hello")
-    public String hello() {
-        return dsaService.getMessage();
+    public APIResponse<String> hello() {
+        return new APIResponse<>(
+                ResponseStatus.CREATED.getCode(),
+                ResponseStatus.CREATED.getMessage(),
+                dsaService.getMessage());
     }
     
 }
