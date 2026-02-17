@@ -30,7 +30,8 @@ public class controller {
     }
 
     @GetMapping("/lengthOfLongestSubstring")
-    public APIResponse<Map<String, Integer>> getlengthOfLongestSubstring(@RequestParam String string) {
+    public APIResponse<Map<String, Integer>> getlengthOfLongestSubstring(
+            @RequestParam(defaultValue = "") String string) {
         return new APIResponse<>(
                 ResponseStatus.SUCCESS.getCode(),
                 ResponseStatus.SUCCESS.getMessage(),

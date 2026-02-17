@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 public class lengthOfLongestSubstring {
     public static int f(String s) {
         Map<Character, Integer> charMap = new HashMap<>();
+        if (s.equals("")) {
+            return 0;
+        }
         int l = 0;
         int r = 0;
-        String curr_str;
-        String final_str = "";
-        for (int i = 0; i < s.length() - 1; i++) {
+        int curr_str_len;
+        int final_str_len = 0;
+
+        for (int i = 0; i < s.length(); i++) {
 
             char ch = s.charAt(i);
-            char ch_r = s.charAt(r);
 
-            if (charMap.containsKey(ch) || (charMap.containsKey(ch_r) && charMap.get(ch_r) >= l)) {
+
+            if (charMap.containsKey(ch) && charMap.get(ch) >= l) {
                 l = charMap.get(ch) + 1;
 
             }
@@ -26,13 +30,13 @@ public class lengthOfLongestSubstring {
 
             r += 1;
 
-            curr_str = s.substring(l, r);
-            if (curr_str.length() >= final_str.length()) {
-                final_str = curr_str;
+            curr_str_len = r - l;
+            if (curr_str_len >= final_str_len) {
+                final_str_len = curr_str_len;
             }
 
 
         }
-        return final_str.length();
+        return final_str_len;
     }
 }
