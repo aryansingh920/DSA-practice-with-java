@@ -8,7 +8,7 @@ import com.practice.DSA.helper.APIResponse;
 import com.practice.DSA.services.DsaService;
 
 
-@RestController
+@RestController("RootController")
 @RequestMapping("/api/dsa")
 public class DsaController {
     private final DsaService dsaService;
