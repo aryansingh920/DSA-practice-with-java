@@ -2,7 +2,6 @@ package com.practice.DSA.controllers.hash;
 
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
