@@ -9,10 +9,20 @@ public class containerWithMostWater {
     } // required for Spring
 
     public static int maxArea(int[] height) {
-        // System.out.println(".()" );
-        // for (int i : height) {
-        //     System.out.println(i );
-        // }
-        return 0;
+        int l = 0;
+        int r = height.length - 1;
+        int currArea;
+        int maxArea = 0;
+
+        while (l < r) {
+            currArea = (r - l) * (Math.min(height[l], height[r]));
+            maxArea = Math.max(maxArea, currArea);
+            if (height[l] < height[r]) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+        return maxArea;
     }
 }
