@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.practice.DSA.enums.ResponseStatus;
 import com.practice.DSA.helper.APIResponse;
 import com.practice.DSA.services.array.containerWithMostWater;
+import com.practice.DSA.services.array.removeEl;
 import com.practice.DSA.services.array.searchInSortedRotatedArray;
 import com.practice.DSA.services.service;
 
@@ -78,4 +79,28 @@ public class ArrayController {
                 ans);
     }
 
+    @SuppressWarnings("unchecked")
+    @PostMapping(value = "/removeElement", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public APIResponse<Integer> removeElement(
+            @RequestBody Map<String, Object> body,
+            @RequestParam int val) {
+
+        List<Integer> numsList = (List<Integer>) body.get("nums");
+        if (numsList == null) {
+            throw new IllegalArgumentException("Missing 'nums'");
+        }
+
+        int[] nums = new int[numsList.size()];
+        for (int i = 0; i < numsList.size(); i++) {
+            nums[i] = (int) numsList.get(i);
+        }
+
+        // Call the service logic
+        int newLength = removeEl.removeElement(nums, val);
+
+        return new APIResponse<>(
+                ResponseStatus.SUCCESS.getCode(),
+                ResponseStatus.SUCCESS.getMessage(),
+                newLength);
+    }
 }
