@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.practice.DSA.DataTransferObject.LruRequest;
+import com.practice.DSA.DataTransferObject.NextGreaterRequest;
 import com.practice.DSA.enums.ResponseStatus;
 import com.practice.DSA.helper.APIResponse;
 import com.practice.DSA.services.hash.LRU.LRUService;
+import com.practice.DSA.services.hash.p496;
 import com.practice.DSA.services.service;
 
 
@@ -43,10 +45,21 @@ public class HashController {
         LRUService lruService = new LRUService();
 
         return new APIResponse<>(
-            ResponseStatus.SUCCESS.getCode(),
-            ResponseStatus.SUCCESS.getMessage(),
-            lruService.run(object)
-        );
+                ResponseStatus.SUCCESS.getCode(),
+                        ResponseStatus.SUCCESS.getMessage(),
+                lruService.run(object));
+    }
+
+    @PostMapping(value = "/next-greater", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public APIResponse<int[]> getNextGreaterElement(@RequestBody NextGreaterRequest request) {
+        int[] result = p496.nextGreaterElement(
+                request.getNums1(),
+                request.getNums2());
+
+        return new APIResponse<>(
+                ResponseStatus.SUCCESS.getCode(),
+                ResponseStatus.SUCCESS.getMessage(),
+                result);
     }
     
 
